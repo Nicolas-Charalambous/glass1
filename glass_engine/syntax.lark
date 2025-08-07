@@ -1,0 +1,40 @@
+// Timeseries Expression Grammar
+?start: expression
+
+// Expression hierarchy for operator precedence
+?expression: term
+           | expression "+" term   -> add
+           | expression "-" term   -> sub
+
+?term: factor
+     | term "*" factor     -> mul
+     | term "/" factor     -> div
+
+?factor: atom
+       | factor "^" atom    -> pow
+
+// Base elements (atoms)
+?atom: NUMBER               -> number
+     | SYMBOL               -> symbol
+     | STRING               -> string
+     | field_access
+     | function_call
+     | "(" expression ")"
+
+// Field access for symbols like AAPL.close
+field_access: SYMBOL "." SYMBOL -> field_access
+
+// Function calls
+function_call: SYMBOL "(" arguments? ")" -> func_call
+
+// Function arguments (comma-separated expressions)
+arguments: expression ("," expression)*
+
+// Token definitions
+SYMBOL: /[a-zA-Z_][a-zA-Z0-9_]*/
+NUMBER: /\d+(\.\d*)?/
+STRING: /'[^']*'/ | /"[^"]*"/
+
+// Import and ignore whitespace
+%import common.WS
+%ignore WS
