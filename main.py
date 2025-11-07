@@ -8,7 +8,6 @@ from glass_engine.functions import FUNCTIONS
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-SYNTAX_PATH = r'C:\Users\nicol\Projects\glass_dag\glass_engine\syntax.lark'
 
 
 def test_transformer():
@@ -58,13 +57,13 @@ def test_transformer():
     logger.info(f"Second Evaluation time: {end - start:.6f} seconds")
 
 def test_parser():
-    from lark import Lark
-    parser = Lark.open(SYNTAX_PATH, parser='lalr')
+    #Create engine
+    engine = ExpressionEngine(SYNTAX_PATH)
     # Example expression
     expression = "realized_vol((mavg(AAPL.close,20) + rsi(GOOG,34)) / 210) + rand()"
 
     # Parse the expression to get the parse tree (not evaluated)
-    parse_tree = parser.parse(expression)
+    parse_tree = engine.parse(expression)
 
     # Print the parse tree
     print(parse_tree.pretty())

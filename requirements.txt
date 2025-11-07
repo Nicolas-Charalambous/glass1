@@ -3,3 +3,5 @@ numpy
 pandas
 dash
 dash-ag-grid
+lark
+sympy

@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: glass-dag
+Version: 0.1.0
+Summary: A timeseries expression engine with technical indicators
+Author-email: Nicolas <your.email@example.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: lark
+Requires-Dist: numba
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+
+# glass_dag
+
+A Python project for modeling Directed Acyclic Graphs (DAGs).
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+Import and use the `dag_model` module from the `glass_dag` package.
+
+## Testing
+
+```bash
+pytest
+```
